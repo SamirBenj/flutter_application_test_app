@@ -43,7 +43,7 @@ class _CategoriePageState extends State<CategoriePage> {
         ],
       ),
       body: Container(
-        child: GridView.builder(
+        child: ListView.builder(
           itemCount: 8,
           itemBuilder: (context, index) {
             return InkWell(
@@ -96,8 +96,6 @@ class _CategoriePageState extends State<CategoriePage> {
               ),
             );
           },
-          gridDelegate:
-              SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 1),
         ),
       ),
     );
