@@ -1,4 +1,5 @@
 class Produit {
+  String categorie;
   String nomProduit;
   int prix;
   String imageProduit;
@@ -6,6 +7,7 @@ class Produit {
   String description;
 
   Produit(
+    this.categorie,
     this.nomProduit,
     this.prix,
     this.imageProduit,

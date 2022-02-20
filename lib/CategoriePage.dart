@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:projet_food/DetailsPage.dart';
+import 'package:projet_food/detailCateg.dart';
 import 'Classes/classCategorie.dart';
 
 class CategoriePage extends StatefulWidget {
@@ -44,40 +46,52 @@ class _CategoriePageState extends State<CategoriePage> {
         child: GridView.builder(
           itemCount: 8,
           itemBuilder: (context, index) {
-            return Card(
-              elevation: 5.0,
-              color: Color.fromRGBO(111, 186, 255, 100),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(30),
-              ),
-              margin: EdgeInsets.all(20),
-              child: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Column(
-                  children: [
-                    Text(
-                      categorie[index].nom,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
+            return InkWell(
+              onTap: () {
+                //recuperer la categorie
+                var nomCateg = categorie[index].nom;
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => DetailCateg(
+                              nomCateg: nomCateg,
+                            )));
+              },
+              child: Card(
+                elevation: 5.0,
+                color: Color.fromRGBO(111, 186, 255, 100),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30),
+                ),
+                margin: EdgeInsets.all(20),
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Column(
+                    children: [
+                      Text(
+                        categorie[index].nom,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                          color: Colors.white,
+                        ),
+                      ),
+                      Divider(
+                        thickness: 2,
+                        height: 30,
+                        indent: 100,
                         color: Colors.white,
+                        endIndent: 100,
                       ),
-                    ),
-                    Divider(
-                      thickness: 2,
-                      height: 30,
-                      indent: 100,
-                      color: Colors.white,
-                      endIndent: 100,
-                    ),
-                    Image(
-                      width: 40,
-                      height: 40,
-                      image: AssetImage(
-                        categorie[index].image,
+                      Image(
+                        width: 40,
+                        height: 40,
+                        image: AssetImage(
+                          categorie[index].image,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             );

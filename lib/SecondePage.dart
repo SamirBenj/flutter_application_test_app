@@ -25,15 +25,15 @@ class _SecondePageState extends State<SecondePage> {
   }
 
   List<Produit> produits = [
-    Produit("Hamburger", 10, "assets/hamburger_1.jpg", false,
+    Produit("burger", "Sushi", 15, "assets/sushi.jpg", false,
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit."),
-    Produit("Sushi", 15, "assets/sushi.jpg", false,
+    Produit("pizza", "Sushi", 15, "assets/sushi.jpg", false,
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit."),
-    Produit("Pizza", 12, "assets/pizza.jpg", false,
+    Produit("sushi", "Sushi", 15, "assets/sushi.jpg", false,
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit."),
-    Produit("BurgerKing", 8, "assets/burgerKing.jpg", false,
+    Produit("burger", "Sushi", 15, "assets/sushi.jpg", false,
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit."),
-    Produit("Tiramisu", 10, "assets/tiramisu.jpg", false,
+    Produit("burger", "Sushi", 15, "assets/sushi.jpg", false,
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit."),
   ];
 
