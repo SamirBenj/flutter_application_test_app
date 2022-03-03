@@ -25,20 +25,18 @@ class _SecondePageState extends State<SecondePage> {
   }
 
   List<Produit> produits = [
-    Produit("burger", "Sushi", 15, "assets/sushi.jpg", false,
+    Produit("burger", "Sushi", 15, "assets/Chorizo.jpg", false,
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit."),
-    Produit("pizza", "Sushi", 15, "assets/sushi.jpg", false,
+    Produit("pizza", "Sushi", 15, "assets/salad.png", false,
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit."),
-    Produit("sushi", "Sushi", 15, "assets/sushi.jpg", false,
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit."),
-    Produit("burger", "Sushi", 15, "assets/sushi.jpg", false,
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit."),
-    Produit("burger", "Sushi", 15, "assets/sushi.jpg", false,
+    Produit("burger", "Sushi", 15, "assets/Chorizo.jpg", false,
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit."),
   ];
 
   @override
   Widget build(BuildContext context) {
+    var produitSelectionner = produits.where((element) => element.valeurBool);
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -50,8 +48,11 @@ class _SecondePageState extends State<SecondePage> {
         actions: [
           IconButton(
             onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => PanierPage()));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          PanierPage(panierInfo: produitSelectionner)));
             },
             icon: Icon(
               Icons.shopping_basket,
@@ -70,6 +71,8 @@ class _SecondePageState extends State<SecondePage> {
         },
         child: Column(
           children: [
+            Text(totalPanier.toString()),
+            // Image.asset('assets/Chorizo.jpg'),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(
@@ -102,63 +105,71 @@ class _SecondePageState extends State<SecondePage> {
                   // print(produits[index]['nom'].toString());
                   // var nom = produits[index]['nom'];
                   // print(produits[index]['valeurBool']);
+
                   return Padding(
                     padding: const EdgeInsets.all(15.0),
                     child: Material(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(10),
                       elevation: 2.0,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          // Image.asset(
-                          //   'assets/${produits[index].imageProduit}',
-                          //   height: 100,
-                          // ),
-                          Padding(
-                            padding: const EdgeInsets.all(10),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  produits[index].nomProduit.toString(),
-                                ),
-                                Text(
-                                  '${produits[index].prix}' + '€',
-                                )
-                              ],
+                      child: Container(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset(
+                              '${produits[index].imageProduit}',
+                              height: 100,
                             ),
-                          ),
-                          Expanded(
-                            child: Padding(
+                            Padding(
+                              padding: const EdgeInsets.all(10),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    produits[index].nomProduit.toString(),
+                                  ),
+                                  Text(
+                                    '${produits[index].prix}' + '€',
+                                  )
+                                ],
+                              ),
+                            ),
+                            Padding(
                               padding: EdgeInsets.all(10),
                               child: Text(
                                 '${produits[index].description}',
                                 maxLines: 5,
                               ),
                             ),
-                          ),
-                          Expanded(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Checkbox(
-                                    value: produits[index].valeurBool,
-                                    onChanged: (value) {
-                                      setState(() {
-                                        produits[index].valeurBool = value!;
-                                      });
-                                    }),
-                              ],
+                            Expanded(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Checkbox(
+                                      value: produits[index].valeurBool,
+                                      onChanged: (value) {
+                                        setState(() {
+                                          produits[index].valeurBool = value!;
+                                        });
+                                        if (value == true) {
+                                          fonctionAddition();
+                                        } else {
+                                          fonctionSoustraction();
+                                        }
+                                      }),
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   );
                 },
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   mainAxisSpacing: 20,
+                  mainAxisExtent: MediaQuery.of(context).size.height * 0.35,
                   crossAxisCount: 2,
                 ),
               ),
