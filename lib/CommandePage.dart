@@ -33,13 +33,41 @@ class _CommandePageState extends State<CommandePage> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          TextField(
-            decoration: InputDecoration(
-                hintText: "Votre adresse",
-                labelText: "Adresse",
-                labelStyle: TextStyle(fontSize: 24, color: Colors.black),
-                border: OutlineInputBorder()),
-            obscureText: false,
+          Expanded(
+            child: Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    width: MediaQuery.of(context).size.width / 2,
+                    child: TextField(
+                      decoration: InputDecoration(
+                          hintText: "Votre adresse",
+                          labelText: "Adresse",
+                          labelStyle:
+                              TextStyle(fontSize: 15, color: Colors.black),
+                          border: OutlineInputBorder()),
+                      obscureText: false,
+                    ),
+                  ),
+                ),
+                Padding(
+                    padding: const EdgeInsets.all(0.0),
+                    child: Container(
+                      width: MediaQuery.of(context).size.width / 2.5,
+                      child: TextField(
+                        decoration: InputDecoration(
+                          hintText: "Votre adresse",
+                          labelText: "Numero rue",
+                          labelStyle:
+                              TextStyle(fontSize: 15, color: Colors.black),
+                          border: OutlineInputBorder(),
+                        ),
+                        obscureText: false,
+                      ),
+                    ))
+              ],
+            ),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
