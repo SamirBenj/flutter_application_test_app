@@ -33,6 +33,8 @@ class _SecondePageState extends State<SecondePage> {
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit."),
   ];
 
+  String _valueSelected = "1";
+
   @override
   Widget build(BuildContext context) {
     var produitSelectionner = produits.where((element) => element.valeurBool);
@@ -62,124 +64,136 @@ class _SecondePageState extends State<SecondePage> {
           ),
         ],
       ),
-      body: GestureDetector(
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => DetailsPage()),
-          );
-        },
-        child: Column(
-          children: [
-            Text(totalPanier.toString()),
-            // Image.asset('assets/Chorizo.jpg'),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => CategoriePage()));
-                    },
-                    child: Text('Categories'),
-                  ),
-                  ElevatedButton(
-                    onPressed: () {},
-                    child: Text('Recettes'),
-                  ),
-                ],
-              ),
+      body: Column(
+        children: [
+          Text(totalPanier.toString()),
+          // Image.asset('assets/Chorizo.jpg'),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => CategoriePage()));
+                  },
+                  child: Text('Categories'),
+                ),
+                ElevatedButton(
+                  onPressed: () {},
+                  child: Text('Recettes'),
+                ),
+              ],
             ),
-            Expanded(
-              child:
-                  //FutureBuilder(
-                  //   builder: (context, snapshot) {
-                  //     var produits = json.decode(snapshot.data.toString());
-                  GridView.builder(
-                itemCount: produits.length,
-                itemBuilder: (BuildContext context, int index) {
-                  // print(produits[index]['nom'].toString());
-                  // var nom = produits[index]['nom'];
-                  // print(produits[index]['valeurBool']);
+          ),
+          Expanded(
+            child:
+                //FutureBuilder(
+                //   builder: (context, snapshot) {
+                //     var produits = json.decode(snapshot.data.toString());
+                GridView.builder(
+              itemCount: produits.length,
+              itemBuilder: (BuildContext context, int index) {
+                // print(produits[index]['nom'].toString());
+                // var nom = produits[index]['nom'];
+                // print(produits[index]['valeurBool']);
 
-                  return Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    child: Material(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10),
-                      elevation: 2.0,
-                      child: Container(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.asset(
-                              '${produits[index].imageProduit}',
-                              height: 100,
+                return Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: Material(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10),
+                    elevation: 2.0,
+                    child: Container(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                            '${produits[index].imageProduit}',
+                            height: 100,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  produits[index].nomProduit.toString(),
+                                ),
+                                Text(
+                                  '${produits[index].prix}' + '€',
+                                )
+                              ],
                             ),
-                            Padding(
-                              padding: const EdgeInsets.all(10),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    produits[index].nomProduit.toString(),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.all(10),
+                            child: Text(
+                              '${produits[index].description}',
+                              maxLines: 5,
+                            ),
+                          ),
+                          Expanded(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Expanded(
+                                  child: DropdownButtonFormField(
+                                    items: [
+                                      DropdownMenuItem(
+                                        value: '1',
+                                        child: Text('1'),
+                                      ),
+                                      DropdownMenuItem(
+                                        value: '2',
+                                        child: Text('2'),
+                                      ),
+                                    ],
+                                    value: _valueSelected,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        _valueSelected != value;
+                                      });
+                                      print(value);
+                                    },
                                   ),
-                                  Text(
-                                    '${produits[index].prix}' + '€',
-                                  )
-                                ],
-                              ),
+                                ),
+                                Checkbox(
+                                    value: produits[index].valeurBool,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        produits[index].valeurBool = value!;
+                                      });
+                                      if (value == true) {
+                                        fonctionAddition();
+                                      } else {
+                                        fonctionSoustraction();
+                                      }
+                                    }),
+                              ],
                             ),
-                            Padding(
-                              padding: EdgeInsets.all(10),
-                              child: Text(
-                                '${produits[index].description}',
-                                maxLines: 5,
-                              ),
-                            ),
-                            Expanded(
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  Checkbox(
-                                      value: produits[index].valeurBool,
-                                      onChanged: (value) {
-                                        setState(() {
-                                          produits[index].valeurBool = value!;
-                                        });
-                                        if (value == true) {
-                                          fonctionAddition();
-                                        } else {
-                                          fonctionSoustraction();
-                                        }
-                                      }),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ),
-                  );
-                },
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  mainAxisSpacing: 20,
-                  mainAxisExtent: MediaQuery.of(context).size.height * 0.35,
-                  crossAxisCount: 2,
-                ),
+                  ),
+                );
+              },
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                mainAxisSpacing: 20,
+                mainAxisExtent: MediaQuery.of(context).size.height * 0.40,
+                crossAxisCount: 2,
               ),
-              //   },
-              //   future: DefaultAssetBundle.of(context)
-              //       .loadString("assets/ListeProduits.json"),
-              // ),
             ),
-          ],
-        ),
+            //   },
+            //   future: DefaultAssetBundle.of(context)
+            //       .loadString("assets/ListeProduits.json"),
+            // ),
+          ),
+        ],
       ),
     );
   }
