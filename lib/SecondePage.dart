@@ -26,11 +26,11 @@ class _SecondePageState extends State<SecondePage> {
 
   List<Produit> produits = [
     Produit("burger", "Sushi", 15, "assets/Chorizo.jpg", false,
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit."),
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", 2),
     Produit("pizza", "Sushi", 15, "assets/salad.png", false,
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit."),
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", 3),
     Produit("burger", "Sushi", 15, "assets/Chorizo.jpg", false,
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit."),
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", 4),
   ];
 
   String _valueSelected = "1";

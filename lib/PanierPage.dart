@@ -10,8 +10,14 @@ class PanierPage extends StatefulWidget {
 }
 
 class _PanierPageState extends State<PanierPage> {
+  int somme = 0;
+
   @override
   Widget build(BuildContext context) {
+    num sommePanier = 0;
+    for (int i = 0; i < widget.panierInfo.length; i++) {
+      sommePanier = sommePanier + widget.panierInfo.toList()[i].prix;
+    }
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -68,7 +74,7 @@ class _PanierPageState extends State<PanierPage> {
                               height: 5,
                             ),
                             Text(
-                              '2.60€',
+                              widget.panierInfo.toList()[index].prix.toString(),
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: Colors.red,
@@ -83,6 +89,7 @@ class _PanierPageState extends State<PanierPage> {
               },
             ),
           ),
+          Text(sommePanier.toString()),
           ElevatedButton(
             onPressed: () {
               Navigator.push(context,

@@ -5,6 +5,7 @@ class Produit {
   String imageProduit;
   bool valeurBool;
   String description;
+  int quantite;
 
   Produit(
     this.categorie,
@@ -13,11 +14,13 @@ class Produit {
     this.imageProduit,
     this.valeurBool,
     this.description,
+    this.quantite,
   ) {
     this.nomProduit = nomProduit;
     this.prix = prix;
     this.imageProduit = imageProduit;
     this.valeurBool = valeurBool;
     this.description = description;
+    this.quantite = quantite;
   }
 }
