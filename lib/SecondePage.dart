@@ -157,6 +157,7 @@ class _SecondePageState extends State<SecondePage> {
                                       setState(() {
                                         _valueSelected != value;
                                       });
+                                      //recuperer la valeur qui value d'ou le print
                                       print(value);
                                     },
                                   ),
