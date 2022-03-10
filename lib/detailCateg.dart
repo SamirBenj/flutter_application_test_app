@@ -24,8 +24,8 @@ class _DetailCategState extends State<DetailCateg> {
           itemCount: widget.produitList.length,
           itemBuilder: (BuildContext context, int index) {
             print(widget.produitList[index].prix.toString());
-            if (widget.produitList[index].categorie == "burger") {
-              print("jjsjj");
+            if (widget.produitList[index].categorie ==
+                widget.nomCateg.toString().toLowerCase()) {
               testShowWidget = true;
             } else {
               testShowWidget = false;
@@ -68,69 +68,12 @@ class _DetailCategState extends State<DetailCateg> {
                                 maxLines: 5,
                               ),
                             ),
-                            Expanded(
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  Expanded(
-                                    child: Padding(
-                                      padding: EdgeInsets.all(7.0),
-                                      child: DropdownButtonFormField(
-                                        decoration: InputDecoration(
-                                          enabledBorder: OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(20),
-                                            borderSide: BorderSide(
-                                                color: Colors.orangeAccent),
-                                          ),
-                                          filled: true,
-                                          fillColor: Colors.orangeAccent,
-                                        ),
-                                        dropdownColor: Colors.orangeAccent,
-                                        items: [
-                                          DropdownMenuItem(
-                                            value: '1',
-                                            child: Text('1'),
-                                          ),
-                                          DropdownMenuItem(
-                                            value: '2',
-                                            child: Text('2'),
-                                          ),
-                                        ],
-                                        value: true,
-                                        onChanged: (value) {
-                                          // setState(() {
-                                          //   _valueSelected != value;
-                                          // });
-                                          // //recuperer la valeur qui value d'ou le print
-                                          // print(value);
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                  Checkbox(
-                                      value:
-                                          widget.produitList[index].valeurBool,
-                                      onChanged: (value) {
-                                        //   setState(() {
-                                        //     produits[index].valeurBool = value!;
-                                        //   });
-                                        //   if (value == true) {
-                                        //     fonctionAddition();
-                                        //   } else {
-                                        //     fonctionSoustraction();
-                                        //   }
-                                        // }),
-                                      }),
-                                ],
-                              ),
-                            ),
                           ],
                         ),
                       ),
                     ),
                   )
-                : GestureDetector();
+                : Text('yes');
           },
         ));
   }
