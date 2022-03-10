@@ -141,25 +141,39 @@ class _SecondePageState extends State<SecondePage> {
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
                                 Expanded(
-                                  child: DropdownButtonFormField(
-                                    items: [
-                                      DropdownMenuItem(
-                                        value: '1',
-                                        child: Text('1'),
+                                  child: Padding(
+                                    padding: EdgeInsets.all(7.0),
+                                    child: DropdownButtonFormField(
+                                      decoration: InputDecoration(
+                                        enabledBorder: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                          borderSide: BorderSide(
+                                              color: Colors.orangeAccent),
+                                        ),
+                                        filled: true,
+                                        fillColor: Colors.orangeAccent,
                                       ),
-                                      DropdownMenuItem(
-                                        value: '2',
-                                        child: Text('2'),
-                                      ),
-                                    ],
-                                    value: _valueSelected,
-                                    onChanged: (value) {
-                                      setState(() {
-                                        _valueSelected != value;
-                                      });
-                                      //recuperer la valeur qui value d'ou le print
-                                      print(value);
-                                    },
+                                      dropdownColor: Colors.orangeAccent,
+                                      items: [
+                                        DropdownMenuItem(
+                                          value: '1',
+                                          child: Text('1'),
+                                        ),
+                                        DropdownMenuItem(
+                                          value: '2',
+                                          child: Text('2'),
+                                        ),
+                                      ],
+                                      value: _valueSelected,
+                                      onChanged: (value) {
+                                        setState(() {
+                                          _valueSelected != value;
+                                        });
+                                        //recuperer la valeur qui value d'ou le print
+                                        print(value);
+                                      },
+                                    ),
                                   ),
                                 ),
                                 Checkbox(
