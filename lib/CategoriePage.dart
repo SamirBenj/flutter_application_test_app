@@ -4,8 +4,8 @@ import 'package:projet_food/detailCateg.dart';
 import 'Classes/classCategorie.dart';
 
 class CategoriePage extends StatefulWidget {
-  const CategoriePage({Key? key}) : super(key: key);
-
+  const CategoriePage({Key? key, required this.produitList}) : super(key: key);
+  final produitList;
   @override
   State<CategoriePage> createState() => _CategoriePageState();
 }
@@ -54,6 +54,7 @@ class _CategoriePageState extends State<CategoriePage> {
                     context,
                     MaterialPageRoute(
                         builder: (context) => DetailCateg(
+                              produitList: widget.produitList,
                               nomCateg: nomCateg,
                             )));
               },

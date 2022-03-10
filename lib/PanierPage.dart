@@ -16,7 +16,9 @@ class _PanierPageState extends State<PanierPage> {
   Widget build(BuildContext context) {
     num sommePanier = 0;
     for (int i = 0; i < widget.panierInfo.length; i++) {
-      sommePanier = sommePanier + widget.panierInfo.toList()[i].prix;
+      sommePanier = sommePanier +
+          widget.panierInfo.toList()[i].prix *
+              widget.panierInfo.toList()[i].quantite;
     }
     return Scaffold(
       appBar: AppBar(

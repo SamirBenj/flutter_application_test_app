@@ -78,7 +78,8 @@ class _SecondePageState extends State<SecondePage> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => CategoriePage()));
+                            builder: (context) =>
+                                CategoriePage(produitList: produits)));
                   },
                   child: Text('Categories'),
                 ),
